@@ -42,9 +42,6 @@ void loop(){
       active = false;
     }
   }
-
-  if (!active)
-    return;
   
   /*******handle time incrementing with buttons********/
   if (analogRead(minute_increment_pin) < 100){
@@ -91,6 +88,9 @@ void loop(){
   hour %=24;
 
   /*******convert to binary and control LEDs********/
+  if (!active)
+    return;
+    
   int vals_per_loc[4] = {minute%10, minute/10, hour%10, hour/10}; //minute digit, minute tens, hour digit, hour tens
 
   int led_output_pin = 0;
